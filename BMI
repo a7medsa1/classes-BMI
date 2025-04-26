@@ -1,0 +1,51 @@
+using System;
+
+public class Person
+{
+    public string Name {get; set;}
+    public int Age {get; set;}
+    public double Height {get; set;} 
+    public double Weight {get; set;}
+
+    public Person(string name, int age, double height, double weight)
+    {
+        Name = name;
+        Age = age;
+        Height = height;
+        Weight = weight;
+    }
+}
+
+public enum BMICategory
+{
+    Underweight,
+    Normal,
+    Overweight,
+    Obese
+}
+
+public class BMIEntry
+{
+    public DateTime Date {get; set;}
+    public double BMIValue {get; set;}
+    public BMICategory Category {get; set;}
+
+    public BMIEntry(double bmiValue)
+    {
+        Date = DateTime.Now;
+        BMIValue = bmiValue;
+        Category = ClassifyBMI(bmiValue);
+    }
+
+    private BMICategory ClassifyBMI(double bmi)
+    {
+        if (bmi < 18.5)
+            return BMICategory.Underweight;
+        else if (bmi < 25)
+            return BMICategory.Normal;
+        else if (bmi < 30)
+            return BMICategory.Overweight;
+        else
+            return BMICategory.Obese;
+    }
+}
